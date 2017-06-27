@@ -24,7 +24,7 @@
 			</div>
 			<div class="col-md-3" style="padding-top:20px">
 				<ol class="list-inline">
-					<li><a href="/login">登录</a></li>
+					<li><a href="jsp/login.jsp">登录</a></li>
 					<li><a href="/register">注册</a></li>
 					<li><a href="/cart">购物车</a></li>
 				</ol>

@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>员工列表</title>
+<title>登录页面</title>
+<%
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
 <!-- web路径：
 不以/开始的相对路径，找资源，以当前资源的路径为基准，经常容易出问题。
 以/开始的相对路径，找资源，以服务器的路径为标准(http://localhost:3306)；需要加上项目名
@@ -19,7 +22,7 @@
 	src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <!-- 引入自定义css文件 style.css -->
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="${APP_PATH }/css/style.css" type="text/css" />
 
 <style>
 body {
@@ -47,20 +50,21 @@ font {
 </style>
 </head>
 <body>
+	<div class="container-fluid">
 	<!--时间：2017.6.26
 			描述：菜单栏  -->
 	<div class="container-fluid">
 		<div class="col-md-4">
-			<img src="img/logo.png" />
+			<img src="${APP_PATH }/img/logo.png" />
 		</div>
 		<div class="col-md-5">
-			<img src="img/header.png" />
+			<img src="${APP_PATH }/img/header.png" />
 		</div>
 		<div class="col-md-3" style="padding-top: 20px">
 			<ol class="list-inline">
-				<li><a href="/login">登录</a></li>
-				<li><a href="/register">注册</a></li>
-				<li><a href="/cart">购物车</a></li>
+				<li><a href="jsp/login.jsp">登录</a></li>
+				<li><a href="jsp/register">注册</a></li>
+				<li><a href="jsp/cart">购物车</a></li>
 			</ol>
 		</div>
 	</div>
@@ -106,7 +110,7 @@ font {
 	</div>
 	
 	<div class="container"
-		style="width: 100%; height: 460px; background: #FF2C4C url('images/loginbg.jpg') no-repeat;">
+		style="width: 100%; height: 460px; background: #FF2C4C url('${APP_PATH }/images/loginbg.jpg') no-repeat;">
 		<div class="row">
 			<div class="col-md-7">
 				<!--<img src="./image/login.jpg" width="500" height="330" alt="会员登录" title="会员登录">-->
@@ -141,7 +145,7 @@ font {
 									placeholder="请输入验证码">
 							</div>
 							<div class="col-sm-3">
-								<img src="./image/captcha.jhtml" />
+								<img src="${APP_PATH }/image/captcha.jhtml" />
 							</div>
 
 						</div>
@@ -159,7 +163,7 @@ font {
 							<div class="col-sm-offset-2 col-sm-10">
 								<input type="submit" width="100" value="登录" name="submit"
 									border="0"
-									style="background: url('./images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+									style="background: url('${APP_PATH }/images/login.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
 							</div>
 						</div>
 					</form>
@@ -170,7 +174,7 @@ font {
 	
 	<div class="container-fluid">
 				<div style="margin-top:50px;">
-					<img src="img/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势" />
+					<img src="${APP_PATH }/img/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势" />
 				</div>
 		
 				<div style="text-align: center;margin-top: 5px;">
@@ -189,6 +193,7 @@ font {
 				<div style="text-align: center;margin-top: 5px;margin-bottom:20px;">
 					Copyright &copy; 2017-2027 乐加厨柜 版权所有
 				</div>
-			</div>		   
+			</div>
+		</div>		   
 </body>
 </html>

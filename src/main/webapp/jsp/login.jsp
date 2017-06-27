@@ -108,6 +108,7 @@ font {
 			</div>
 			<!-- /.container-fluid --> </nav>
 		</div>
+		
 		<!-- 时间：2017.6.27
 			  描述：登录表单 -->
 		<div class="container"
@@ -172,6 +173,7 @@ font {
 				</div>
 			</div>
 		</div>
+		
 		<!-- 时间：2017.6.26
 			   描述：页脚部分 -->
 		<div class="container-fluid">
@@ -197,6 +199,8 @@ font {
 				style="text-align: center; margin-top: 5px; margin-bottom: 20px;">
 				Copyright &copy; 2017-2027 乐加厨柜 版权所有</div>
 		</div>
+		
+		
 	</div>
 </body>
 </html>

@@ -3,7 +3,7 @@ package com.cn.pojo;
 import java.util.Date;
 
 public class User {
-    private String uid;
+    private Integer uid;
 
     private String username;
 
@@ -23,12 +23,12 @@ public class User {
 
     private String code;
 
-    public String getUid() {
+    public Integer getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid == null ? null : uid.trim();
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     public String getUsername() {

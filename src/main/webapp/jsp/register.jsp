@@ -117,76 +117,89 @@ font {
 				<font>会员注册</font>USER REGISTER
 				<form class="form-horizontal" style="margin-top: 5px;">
 					<div class="form-group">
-						<label for="username" class="col-sm-2 control-label">用户名</label>
+						<label for="username_add_input" class="col-sm-2 control-label">用户名</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="username_add_input"
-								name="username" placeholder="请输入用户名">
+								name="username" placeholder="请输入用户名2-5位中文或者6-16位英文和数字的组合">
+							<span class="help-block"></span>
 						</div>
 					</div>
+
 					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+						<label for="password_add_input" class="col-sm-2 control-label">密码</label>
 						<div class="col-sm-6">
 							<input type="password" class="form-control"
 								id="password_add_input" name="password" placeholder="请输入密码">
 						</div>
 					</div>
-					<!-- <div class="form-group">
-						<label for="confirmpwd" class="col-sm-2 control-label">确认密码</label>
+
+					<div class="form-group">
+						<label for="password_add_input2" class="col-sm-2 control-label">确认密码</label>
 						<div class="col-sm-6">
 							<input type="password" class="form-control"
 								id="password_add_input2" placeholder="请输入确认密码">
 						</div>
-					</div> -->
-					<!-- <div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+					</div>
+
+					<div class="form-group">
+						<label for="email_add_input" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="email_add_input"
-								name="email" placeholder="Email">
+								name="email" placeholder="email@qq.com">
+							<span class="help-block"></span>
 						</div>
-					</div> -->
-					<!-- <div class="form-group">
-						<label for="usercaption" class="col-sm-2 control-label">姓名</label>
+					</div>
+
+					<div class="form-group">
+						<label for="name_add_input" class="col-sm-2 control-label">姓名</label>
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="name_add_input"
 								name="name" placeholder="请输入姓名">
 						</div>
-					</div> -->
-					<!-- <div class="form-group opt">
+					</div>
+
+					<div class="form-group opt">
 						<label for="inlineRadio1" class="col-sm-2 control-label">性别</label>
 						<div class="col-sm-6">
-							<label class="radio-inline"> <input type="radio"
-								name="sex" id="sex_add_input" value="option1"> 男
-							</label> <label class="radio-inline"> <input type="radio"
-								name="sex" id="sex2_add_input" value="option2"> 女
+							<label class="sex_add_input"> <input type="radio"
+								name="sex" id="sex_add_input" value="M"> 男
+							</label> <label class="sex2_add_input"> <input type="radio"
+								name="sex" id="sex2_add_input" value="F"> 女
 							</label>
 						</div>
-					</div> -->
-					<!-- <div class="form-group">
-						<label for="date" class="col-sm-2 control-label">出生日期</label>
-						<div class="col-sm-6">
-							<input type="date" class="form-control" name="birthday"
-								id="birthday_add_input">
-						</div>
-					</div> -->
-
-					<%-- <div class="form-group">
-						<label for="date" class="col-sm-2 control-label">验证码</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="code"
-								id="code_add_input">
-						</div>
-						<div class="col-sm-2">
-							<img src="${APP_PATH }/image/captcha.jhtml" />
-						</div>
-					</div> --%>
+					</div>
 
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<input type="button" width="100" value="注册" id="user_save_btn"
-								border="0"
-								style="background: url('${APP_PATH }/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0); height: 35px; width: 100px; color: white;">
+						<label for="telephone_add_input" class="col-sm-2 control-label">电话号码</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="telephone_add_input"
+								name="telephone" placeholder="请输入姓名">
 						</div>
 					</div>
+					  <div class="form-group">
+						<label for="birthday_add_input" class="col-sm-2 control-label">出生日期</label>
+						<div class="col-sm-6">
+							<input type="date" class="form-control" 
+								id="birthday_add_input">
+						</div>
+					</div>   
+
+						<div class="form-group">
+							<label for="text" class="col-sm-2 control-label">验证码</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="code"
+									id="code_add_input">
+							</div>
+							<div class="col-sm-2">
+								<img src="${APP_PATH }/image/captcha.jhtml" />
+							</div>
+						</div> 
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								  <button type="button" class="btn btn-primary" id="user_save_btn">注册</button>
+							</div>
+						</div>
 				</form>
 			</div>
 			<div class="col-md-2"></div>
@@ -220,12 +233,90 @@ font {
 
 
 	<script type="text/javascript">
+		//检验用户名是否可用
+		$("#username_add_input").change(
+				function() {
+					//发ajax请求校验用户名是否可用
+					var username = this.value;
+					$.ajax({
+						url : "${APP_PATH}/checkuser",
+						data : "username=" + username,
+						type : "POST",
+						success : function(result) {
+							if (result.code == 100) {
+								show_validate_msg("#username_add_input",
+										"success", "用户名可用");
+								$("#emp_save_btn").attr("ajax-va", "success");
+							} else {
+								show_validate_msg("#username_add_input",
+										"error", result.extend.va_msg);
+								$("#emp_save_btn").attr("ajax-va", "error");
+							}
+						}
+					});
+				});
+
+		//检验表单数据
+		function validate_add_form() {
+			//拿到表单数据，用正则表达式检验
+			var username = $("#username_add_input").val();
+			var regName = /(^[a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5})/;
+			if (!regName.test(username)) {
+				show_validate_msg("#username_add_input", "error", "用户名可以是2-5位中文或者6-16位英文和数字的组合");
+				return false;
+			} else {
+				show_validate_msg("#username_add_input", "success", "");
+			}
+			;
+
+			//2、校验邮箱信息
+			var email = $("#email_add_input").val();
+			var regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+			if (!regEmail.test(email)) {
+				show_validate_msg("#email_add_input", "error", "邮箱格式不正确");
+				return false;
+			} else {
+				show_validate_msg("#email_add_input", "success", "");
+			}
+			return true;
+		}
+		//显示校验结果的提示信息
+		function show_validate_msg(ele, status, msg) {
+			//清除当前元素的校验状态
+			$(ele).parent().removeClass("has-success has-error");
+			$(ele).next("span").text("");
+			if ("success" == status) {
+				$(ele).parent().addClass("has-success");
+				$(ele).next("span").text(msg);
+			} else if ("error" == status) {
+				$(ele).parent().addClass("has-error");
+				$(ele).next("span").text(msg);
+			}
+		}
+		
+		//清空表单样式及内容
+		function reset_form(ele){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+			$(ele)[0].reset();
+			//清空表单样式
+			$(ele).find("*").removeClass("has-error has-success");
+			$(ele).find(".help-block").text("");
+		}
+		
 		//新增模态框中填写的数据 保存数据
 		$("#user_save_btn").click(function() {
 
+			//1.对表单填写数据进行检验
+			if (!validate_add_form()) {
+				return false;
+			}
+			;
+			//2、判断之前的ajax用户名校验是否成功。如果成功。
+			if ($(this).attr("ajax-va") == "error") {
+				return false;
+			}
 			//发送ajax请求保存员工
 			//alert($("#userAdd form").serialize());
-			 $.ajax({
+			$.ajax({
 				url : "${APP_PATH}/user",
 				type : "POST",
 				data : $("#userAdd form").serialize(),
@@ -236,9 +327,17 @@ font {
 					} else {
 						//显示失败信息
 						//console.log(result);
+						if(undefined != result.extend.errorFields.email){
+							//显示邮箱错误信息
+							show_validate_msg("#email_add_input", "error", result.extend.errorFields.email);
+						}
+						if(undefined != result.extend.errorFields.empName){
+							//显示员工名字的错误信息
+							show_validate_msg("#empName_add_input", "error", result.extend.errorFields.empName);
+						}
 					}
 				}
-			}); 
+			});
 
 		});
 	</script>

@@ -11,6 +11,11 @@
 <link href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script
+	src="static/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<link
+	href="static/bootstrapValidator/css/bootstrapValidator.min.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<div class="container-fluid">
@@ -24,11 +29,20 @@
 				<img src="img/header.png" />
 			</div>
 			<div class="col-md-3" style="padding-top: 20px">
-				<ol class="list-inline">
-					<li><a href="jsp/login.jsp">登录</a></li>
-					<li><a href="jsp/register.jsp">注册</a></li>
-					<li><a href="jsp/cart.jsp">购物车</a></li>
-				</ol>
+
+				<button class="btn btn-link" id="user_login_modal_btn">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					登录
+				</button>
+				<button class="btn btn-link" id="user_add_modal_btn">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					注册
+				</button>
+				<button class="btn btn-link" id="user_look_modal_btn">
+					<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+					购物车
+				</button>
+
 			</div>
 		</div>
 
@@ -63,7 +77,7 @@
 						<div class="form-group">
 							<input type="text" class="form-control" placeholder="乐加厨柜">
 						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" class="btn btn-success">Submit</button>
 					</form>
 
 				</div>
@@ -424,5 +438,93 @@
 				Copyright &copy; 2017-2027 乐加厨柜 版权所有</div>
 		</div>
 	</div>
+
+	<!-- 会员注册模态窗 -->
+	<div class="modal fade" id="userAddModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">欢迎会员注册</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">用户名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="username"
+									id="username_add_input" placeholder="您的账户名和登录名"> <span
+									class="help-block" id="username_hint"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">设置密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" name="password"
+									id="password_add_input" placeholder="建议至少使用2种字符组合"> <span
+									class="help-block"></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">确认密码</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" name="password"
+									id="password_add_input" placeholder="建议至少使用2种字符组合"> <span
+									class="help-block"></span>
+							</div>
+						</div>
+
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="emp_save_btn">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$("#user_save_btn").click(function() {
+			//1.对表单填写数据进行检验
+			$('form').bootstrapValidator({
+				message : 'This value is not valid',
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					username : {
+						message : '用户名验证失败',
+						validators : {
+							notEmpty : {
+								message : '用户名不能为空'
+							}
+						}
+					},
+					email : {
+						validators : {
+							notEmpty : {
+								message : '邮箱地址不能为空'
+							}
+						}
+					}
+				}
+			});
+		});
+		//点击新增按钮弹出模态窗
+		$("#user_add_modal_btn").click(function() {
+			//弹出模态窗
+			$("#userAddModal").modal({
+				backdrop : "static"
+			});
+		});
+	</script>
 </body>
 </html>

@@ -59,10 +59,12 @@
     <mvc:resources mapping="/images/**" location="/images/" />
     <mvc:resources mapping="/bank_img/**" location="/bank_img/" />
     <mvc:resources mapping="/products/**" location="/products/" />
+    <mvc:resources mapping="/static/js/**" location="/static/js/" /> 
     <mvc:resources mapping="/static/bootstrap-3.3.7-dist/css/**" location="/static/bootstrap-3.3.7-dist/css/" />
     <mvc:resources mapping="/static/bootstrap-3.3.7-dist/js/**" location="/static/bootstrap-3.3.7-dist/js/" />
     <mvc:resources mapping="/static/bootstrap-3.3.7-dist/fonts/**" location="/static/bootstrap-3.3.7-dist/fonts/" />
-    <mvc:resources mapping="/static/js/**" location="/static/js/" />
+    <mvc:resources mapping="/static/bootstrapvalidator/css/**" location="/static/bootstrapvalidator/css/" />
+    <mvc:resources mapping="/static/bootstrapvalidator/js/**" location="/static/bootstrapvalidator/js/" />
+    <mvc:resources mapping="/static/bootstrapvalidator/js/language/**" location="/static/bootstrapvalidator/js/language/" />
     
-  
 </beans>

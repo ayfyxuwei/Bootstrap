@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cn.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.cn.pojo.User">
-    <id column="uid" jdbcType="VARCHAR" property="uid" />
+    <id column="uid" jdbcType="INTEGER" property="uid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -88,15 +88,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
-    where uid = #{uid,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
-    where uid = #{uid,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.cn.pojo.UserExample">
     delete from user
@@ -109,7 +109,7 @@
       name, email, telephone, 
       birthday, sex, state, 
       code)
-    values (#{uid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{uid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
       #{birthday,jdbcType=DATE}, #{sex,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
       #{code,jdbcType=VARCHAR})
@@ -150,7 +150,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="uid != null">
-        #{uid,jdbcType=VARCHAR},
+        #{uid,jdbcType=INTEGER},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -191,7 +191,7 @@
     update user
     <set>
       <if test="record.uid != null">
-        uid = #{record.uid,jdbcType=VARCHAR},
+        uid = #{record.uid,jdbcType=INTEGER},
       </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
@@ -227,7 +227,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set uid = #{record.uid,jdbcType=VARCHAR},
+    set uid = #{record.uid,jdbcType=INTEGER},
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
@@ -272,7 +272,7 @@
         code = #{code,jdbcType=VARCHAR},
       </if>
     </set>
-    where uid = #{uid,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cn.pojo.User">
     update user
@@ -285,6 +285,6 @@
       sex = #{sex,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
       code = #{code,jdbcType=VARCHAR}
-    where uid = #{uid,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>
